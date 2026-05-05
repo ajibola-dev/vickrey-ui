@@ -1,26 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-pitch-black: #08090a;
+  --color-graphite: #0f1011;
+  --color-deep-slate: #161718;
+  --color-charcoal-grey: #23252a;
+  --color-muted-ash: #323334;
+  --color-gunmetal: #383b3f;
+  --color-porcelain: #f7f8f8;
+  --color-light-steel: #d0d6e0;
+  --color-storm-cloud: #8a8f98;
+  --color-fog-grey: #62666d;
+  --color-aether-blue: #5e6ad2;
+  --color-emerald: #27a644;
+  --color-warning-red: #eb5757;
+  --color-neon-lime: #e4f222;
+  --font-mono: 'Berkeley Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --shadow-sm: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
+  --shadow-subtle: rgb(35, 37, 42) 0px 0px 0px 1px inset;
+  --shadow-xl: rgba(8, 9, 10, 0.6) 0px 4px 32px 0px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background-color: var(--color-pitch-black);
+  color: var(--color-porcelain);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.13px;
+  -webkit-font-smoothing: antialiased;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-pitch-black); }
+::-webkit-scrollbar-thumb { background: var(--color-charcoal-grey); border-radius: 2px; }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+.mono { font-family: var(--font-mono); letter-spacing: -0.15px; }
+
+.badge-open { background: rgba(39,166,68,0.12); color: #27a644; border: 1px solid rgba(39,166,68,0.2); }
+.badge-closed { background: rgba(98,102,109,0.12); color: #62666d; border: 1px solid rgba(98,102,109,0.2); }
+.badge-resolved { background: rgba(94,106,210,0.12); color: #5e6ad2; border: 1px solid rgba(94,106,210,0.2); }
+.badge-vickrey { background: rgba(94,106,210,0.08); color: #8a8f98; border: 1px solid rgba(94,106,210,0.15); }
+
+.card { background: var(--color-graphite); border: 1px solid var(--color-charcoal-grey); border-radius: 6px; box-shadow: var(--shadow-sm); }
+.card-elevated { background: var(--color-deep-slate); border: 1px solid var(--color-charcoal-grey); border-radius: 6px; }
+
+.input { background: transparent; border: 1px solid var(--color-charcoal-grey); border-radius: 6px; color: var(--color-porcelain); font-family: var(--font-sans); font-size: 14px; padding: 10px 14px; outline: none; width: 100%; transition: border-color 0.15s; }
+.input:focus { border-color: var(--color-aether-blue); }
+.input::placeholder { color: var(--color-fog-grey); }
+
+.btn-primary { background: var(--color-aether-blue); color: var(--color-porcelain); border: none; border-radius: 6px; font-family: var(--font-sans); font-size: 14px; font-weight: 500; padding: 10px 20px; cursor: pointer; transition: opacity 0.15s; letter-spacing: -0.13px; }
+.btn-primary:hover { opacity: 0.85; }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-ghost { background: transparent; color: var(--color-storm-cloud); border: 1px solid var(--color-charcoal-grey); border-radius: 6px; font-family: var(--font-sans); font-size: 14px; padding: 10px 20px; cursor: pointer; transition: color 0.15s, border-color 0.15s; }
+.btn-ghost:hover { color: var(--color-porcelain); border-color: var(--color-muted-ash); }
+
+.encrypted-value { font-family: var(--font-mono); font-size: 12px; color: var(--color-storm-cloud); background: var(--color-charcoal-grey); border-radius: 4px; padding: 2px 6px; letter-spacing: -0.15px; }
+
+.comp-step { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--color-charcoal-grey); font-size: 13px; }
+.comp-step:last-child { border-bottom: none; }
+.comp-step-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.comp-step-dot.done { background: var(--color-emerald); }
+.comp-step-dot.active { background: var(--color-aether-blue); }
+.comp-step-dot.pending { background: var(--color-charcoal-grey); }
+
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+.pulse { animation: pulse 1.5s ease-in-out infinite; }
